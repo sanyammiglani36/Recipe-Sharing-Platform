@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe</title>
+</head>
+<body>
+    <h1>Edit Recipe</h1>
+    <form action="/recipe/<%= recipe._id %>/edit" method="POST" enctype="multipart/form-data">
+        <div class="col-12">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<%= recipe.name %>" class="form-control  mb-3" required>
+        </div>
+        <div class="col-12">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" class="form-control  mb-3" required><%= recipe.description %></textarea>
+        </div>
+        <div  class="col-12">
+            <label for="ingredients">Ingredients</label>
+            <input type="text" id="ingredients" class="form-control  mb-3" name="ingredients" value="<%= recipe.ingredients.join(', ') %>" required>
+        </div>
+        <div class="col-12">
+            <label for="category">Category:</label>
+            <select class="form-select  mb-3" name="category" aria-label="category" id="category">
+                <option selected>Select Category</option>
+                <option value="Thai">Thai</option>
+                <option value="American">American</option>
+                <option value="Chinese">Chinese</option>
+                <option value="Indian">Indian</option>
+                <option value="Mexican">Mexican</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <label for="image">Image:</label>
+            <input type="file" id="image" class="form-control mb-3" name="image">
+        </div>
+        <button type="submit" class="btn btn-warning">Update Recipe</button>
+    </form>
+    <form action="/recipe/<%= recipe._id %>/delete" method="POST" style="margin-top: 20px;">
+        <button type="submit" class="btn btn-danger  mb-2 onclick="return confirm('Are you sure you want to delete this recipe?')">Delete Recipe</button>
+    </form>
+    <a href="/" class="">Back to Homepage</a>
+</body>
+</html>

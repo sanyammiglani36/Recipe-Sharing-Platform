@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Recipe</title>
+</head>
+<body>
+   <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Submit Your Recipe</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead">Share Your Amazing Recipes with thousands of web developers across the world. Fill our form to get started</p>
+    </div>
+   </div>
+
+   <div class="row justify-content-center">
+
+    <% if(infoSubmitObject != '') { %>
+        <div class="col-8 alert alert-success" role="alert">
+            <%= infoSubmitObject %>
+        </div>
+    <% } %>
+
+    <% if(infoErrorsObject != '') { %>
+        <div class="col-8 alert alert-danger" role="alert">
+            <%= infoErrorsObject[0].message %>
+        </div>
+    <% } %> 
+
+        <div class="col-8">
+
+            <form action="/submit-recipe" enctype="multipart/form-data" method="POST">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" id="email">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="name" class="form-label">Recipe Name</label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="description" id="description" class="form-control" cols="30" rows="4"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="ingredients" class="form-label">Ingredients</label><br>
+                        <small>Example: Ice</small>
+                        <div class="ingredientList">
+                            <div class="ingredientDiv mb-1">
+                                <input type="text" name="ingredients" class="form-control">
+                            </div>     
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="button" class="btn btn-outline-primary" id="addIngredientsBtn">+ Ingredients</button>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="category" class="form-label">Select Category</label>
+                        <select class="form-select" name="category" aria-label="category" id="category">
+                            <option selected>Select Category</option>
+                            <option value="Thai">Thai</option>
+                            <option value="American">American</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Indian">Indian</option>
+                            <option value="Mexican">Mexican</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="image" class="form-label">Product Image</label>
+                        <input type="file" class="form-control" name="image" accept="image/*" id="image">
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Submit Recipe</button>
+                    </div>
+                </div>
+            </form> 
+        </div>
+   </div>
+   
+   <script>
+     document.getElementById('addIngredientsBtn').addEventListener('click', function() {
+         const ingredientList = document.querySelector('.ingredientList');
+         const newIngredientDiv = document.createElement('div');
+         newIngredientDiv.classList.add('ingredientDiv', 'mb-1');
+         newIngredientDiv.innerHTML = '<input type="text" name="ingredients[]" class="form-control">';
+         ingredientList.appendChild(newIngredientDiv);
+     });
+   </script>
+</body>
+</html>
