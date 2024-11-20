@@ -5,6 +5,8 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const expressFlash = require('express-flash'); // Use express-flash
 const {dbconnect} = require("./server/config/db.js")
+const path = require('path');
+
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -26,6 +28,7 @@ app.use(expressFlash());  // Initialize express-flash for flash messaging
 app.use(fileUpload()); // Initialize the fileUpload middleware
 
 app.set('layout', './layouts/main');
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 const routes = require('./server/routes/recipeRouter.js');
