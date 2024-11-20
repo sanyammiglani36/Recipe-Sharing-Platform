@@ -15,7 +15,7 @@ require('dotenv').config();
 dbconnect();
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname,'public')));
 app.use(expressLayouts);
 app.use(cookieParser('RecipeSecure'));
 app.use(session({
