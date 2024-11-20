@@ -1,8 +1,5 @@
-    require('../models/database')
     const Category = require('../models/Category');
     const Recipe = require('../models/Recipe');
-    const { search } = require('../routes/recipeRouter');
-
     exports.homepage = async function(req,res){
         try{
 
